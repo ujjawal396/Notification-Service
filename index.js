@@ -2,13 +2,17 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const env = require('dotenv');
 const mongoose = require('mongoose');
+
 const app = express();
+const sendMail = require('./services/email.service');
 
 env.config();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.listen(process.env.PORT, async()=>{
+    
     console.log(`server started running at : ${process.env.PORT}`);
+    sendMail(process.env.EMAIL, process.env.EMAIL_PASS);
 
     try{
 
