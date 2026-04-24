@@ -4,7 +4,8 @@ const env = require('dotenv');
 const mongoose = require('mongoose');
 
 const app = express();
-const sendMail = require('./services/email.service');
+
+const Cron = require('./crons/cron');
 const TicketRoutes=require('./routes/ticket.routes');
 
 
@@ -35,4 +36,6 @@ app.listen(process.env.PORT, async()=>{
 
 
     }
+    Cron.mailerCron();
+
 })
