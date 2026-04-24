@@ -5,14 +5,18 @@ const mongoose = require('mongoose');
 
 const app = express();
 const sendMail = require('./services/email.service');
+const TicketRoutes=require('./routes/ticket.routes');
+
+
 
 env.config();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+TicketRoutes(app);
 app.listen(process.env.PORT, async()=>{
     
     console.log(`server started running at : ${process.env.PORT}`);
-    sendMail(process.env.EMAIL, process.env.EMAIL_PASS);
+   // sendMail(process.env.EMAIL, process.env.EMAIL_PASS);
 
     try{
 
