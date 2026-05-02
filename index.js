@@ -22,7 +22,7 @@ app.listen(process.env.PORT, async()=>{
     try{
 
         await mongoose.connect(process.env.DB_URL,{
-        dbName: DB_NAME,   // 🔑 dynamic DB name
+        dbName: process.env.DB_NAME,   // 🔑 dynamic DB name
         family: 4,        // Windows DNS fix
         tls: true,
 
