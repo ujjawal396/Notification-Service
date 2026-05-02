@@ -38,7 +38,7 @@ const getTicket=async(req,res)=>{
         successResponseBody.message = 'Successfully fetched details of the given ticket id';
         return res.status(STATUS.OK).json(successResponseBody);
 
-    } catch{
+    } catch(error){
         if(error.err) {
             errorResponseBody.err = error.err;}
 

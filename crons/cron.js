@@ -10,7 +10,7 @@ const mailerCron = () => {
             status: 'PENDING'
         });
 
-    notnotificationsToBeSent.forEach(notification => {
+    notificationsToBeSent.forEach(notification => {
             const mailData = {
                 from: 'mba@support.com',
                 to: notification.recepientEmails,
@@ -19,7 +19,9 @@ const mailerCron = () => {
             };
             mailer.sendMail(mailData, async (err, data) => {
                 if(err) {
-                    console.log(err);
+                    const savedNotification = await Ticket.findById(notification._id);
+                     savedNotification.status = "FAILED";
+                     await savedNotification.save();
                 } else {
                     console.log(data);
                     const savedNotification = await Ticket.findOne({_id: notification._id});

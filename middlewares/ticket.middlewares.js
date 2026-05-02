@@ -12,7 +12,7 @@ const verifyTicketNotificationCreateRequest = async (req, res, next) =>{
     if(!req.body.recepientEmails || !(req.body.recepientEmails instanceof Array) || 
         req.body.recepientEmails.length <= 0
     ) {
-        errorResponseBody.err - 'No recepitent emails given';
+        errorResponseBody.err = 'No recepitent emails given';
         return res.status(STATUS.BAD_REQUEST).json(errorResponseBody);
     }
     next();
